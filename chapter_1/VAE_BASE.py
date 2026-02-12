@@ -49,8 +49,11 @@ class VAE(torch.nn.Module):
         return mean + eps * std
 
     def forward(self, x):
+        # 编码器输出均值和对数方差
         mean, logvar = self.encoder(x)
+        # 采样潜在变量
         z = self.reparameterize(mean, logvar)
+        # 解码器重构输入
         output = self.decoder(z)
         return output, mean, logvar
 
@@ -103,12 +106,11 @@ def train_vae(model, dataloader, optimizer, num_epochs=10, device='cpu', latent_
         losses.append(avg_loss)
         tq.set_postfix({'loss': f'{avg_loss:.4f}'})
 
-        # 🔹 每个 epoch 保存采样结果
+        # 采样
         save_samples(model, latent_dim, device, epoch, out_dir=os.path.join(exp_dir, "samples"))
 
-    print("✅ 训练完成！生成样本保存在 ./samples/ 目录中。")
 
-    # 🔹 绘制loss曲线
+    # 绘制loss曲线
     loss_curve_path = os.path.join(exp_dir, "loss_curve.png")
     plt.figure(figsize=(6, 4))
     plt.plot(range(1, num_epochs + 1), losses, color='blue', linewidth=2)
@@ -122,7 +124,6 @@ def train_vae(model, dataloader, optimizer, num_epochs=10, device='cpu', latent_
     print(f"Loss 曲线已保存为 {loss_curve_path}")
 
 
-# git@github.com:DestineG/ddpmfish.git
 if __name__ == "__main__":
     transform = transforms.Compose([transforms.ToTensor()])
     mnist = datasets.MNIST(root='./data', train=True, transform=transform, download=True)
