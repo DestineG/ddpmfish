@@ -142,8 +142,8 @@ def train_vae(model, dataloader, optimizer, num_epochs=10, device='cpu', latent_
         # 采样
         save_samples(model, latent_dim, device, epoch, out_dir=os.path.join(exp_dir, "samples"))
 
-    # --- 绘制多子图 Loss 曲线 ---
-    loss_curve_path = os.path.join(exp_dir, "loss_curve.png")
+    # Loss 曲线
+    loss_curve_path = os.path.join(exp_dir, f"{os.path.basename(exp_dir)}_loss_curves.png")
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
     epochs = range(1, num_epochs + 1)
 

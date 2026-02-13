@@ -36,22 +36,26 @@ $$
 **control v1**
 - 在编码器中引入类别标签，将输入数据与类别标签进行拼接后输入到网络中。
 - 在解码器中引入类别标签，将潜在变量与类别标签进行拼接后输入到网络中。
+![](./figures/vae_base_control_v1_loss_curves.png)
 ![](./figures/VAE_BASE_Control_v1_epoch_100.png)
 
 **control v2**
 - 在解码器中引入类别标签，将潜在变量与类别标签进行拼接后输入到网络中。
 - 引入了一个分类损失，用于约束解码器生成的样本能够正确地被分类器分类。
+![](./figures/vae_base_control_v2_loss_curves.png)
 ![](./figures/VAE_BASE_Control_v2_epoch_100.png)
 
 **control v3**
 - 在编码器中引入类别标签，将输入数据与类别标签进行拼接后输入到网络中。
 - 在解码器中引入类别标签，将潜在变量与类别标签进行拼接后输入到网络中。
 - 引入了一个分类损失，用于约束解码器生成的样本能够正确地被分类器分类。
+![](./figures/vae_base_control_v3_loss_curves.png)
 ![](./figures/VAE_BASE_Control_v3_epoch_100.png)
 
 **control v4**
 - 编码器用于提取样式信息，embedding用于表示类别信息，解码器将两者结合生成样本。
 - 引入了一个分类损失，用于约束解码器生成的样本能够正确地被分类器分类。
+![](./figures/vae_base_control_v4_loss_curves.png)
 ![](./figures/VAE_BASE_Control_v4_epoch_100.png)
 
 **想法**
